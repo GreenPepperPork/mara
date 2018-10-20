@@ -60,6 +60,10 @@ class MemberController extends Controller
             $password = $this->input('password');
             $password_repeat = $this->input('password_repeat');// TODO 改成统一校验类进行校验
             if (empty($account) || empty($nickname) || empty($password) || empty($password_repeat)) {
+                print_r($account);
+                print_r($nickname);
+                print_r($password);
+                print_r($password_repeat);
                 Result::returnFailedResult('请填写有效的帐号/昵称');
             }
             if ($password !== $password_repeat) {
@@ -89,6 +93,7 @@ class MemberController extends Controller
                 Result::returnFailedResult("注册账号失败");
             }
         } catch (\Exception $e) {
+            print_r($e);
             Result::returnFailedResult("注册账号失败,系统级问题");
         }
 
