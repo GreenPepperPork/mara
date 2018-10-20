@@ -240,11 +240,16 @@ class Query
      * @return int|boolean $lastInsertId 最后插入的主键ID
      * @throws \Exception
      */
-    public function insert(array $row)
+    public function insert($row)
     {
         if (empty($row)) {
             return false;
         }
+
+        if ($row instanceof Model) {
+            $row = get_object_vars($row);
+        }
+        unset($row['id']);
 
         $this->bindParams['fields'] = array_keys($row);
         $this->bindParams['values'] = array_values($row);

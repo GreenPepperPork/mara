@@ -58,10 +58,11 @@ class Controller extends View
      * @param string $key
      * @return mixed
      */
-    public function input($key)
+    public function input($key, $default = null)
     {
         try {
-            return Request::instance()->input($key);
+            $value = Request::instance()->input($key);
+            return !is_null($value) ? $value : $default;
         } catch (InstanceException $e) {
             return null;
         }
