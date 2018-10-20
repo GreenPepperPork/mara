@@ -14,6 +14,10 @@ return [
         'login' => ['\/bf\/member\/login'],
         // 注册登录接口
         'registry' => ['\/bf\/member\/registry'],
+        // 个人中心 -- 个人详情
+        'detail' => ['\/bf\/member\/detail'],
+        // 个人中心 -- 读后感
+        'reaction' => ['\/bf\/member\/reaction'],
         // 测试
         'test' => ['\/bf\/member\/test'],
     ],
