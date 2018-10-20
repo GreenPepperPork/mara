@@ -18,8 +18,31 @@ class UploadController extends Controller
 {
     public function image()
     {
+//        $targetDir = ROOT_PATH . '/public/uploads/';
+//        $body = file_get_contents('php://input');
+//        $data = json_decode($body, true);
+//
+//        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $data['img'], $result)) {
+//            $type = $result[2];
+//            if (in_array($type, ['pjpeg','jpeg','jpg','gif','bmp','png'])) {
+//                $new_file = $targetDir . date('YmdHis_') . '.' . $type;
+//                if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $data)))) {
+//                    $img_path = str_replace('../../..', '', $new_file);
+//                    echo '图片上传成功</br>![](' .$img_path. ')';
+//                } else {
+//                    echo '图片上传失败</br>';
+//                }
+//            } else {
+//                // 文件类型错误
+//                echo '图片上传类型错误';
+//            }
+//        } else {
+//            // 文件错误
+//            echo '文件错误';
+//        }
+
         $targetDir = ROOT_PATH . '/public/uploads/';
-        $targetFile = md5($targetDir . basename($_FILES['fileToUpload']['name']));
+        $targetFile = $targetDir . basename($_FILES['fileToUpload']['name']);
 
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
