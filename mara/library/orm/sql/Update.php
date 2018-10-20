@@ -18,7 +18,7 @@ class Update extends SQL
             ['<TABLE>', '<SET>', '<WHERE>'],
             [
                 $this->parseTable($this->options['table'] ?: null),
-                $this->parseValues(array_keys($this->options['update']) ?: null),
+                $this->parseUpdate($this->options['update'] ?: null),
                 $this->parseWhere(($this->options['where'] ?: null))
             ],
             $this->updateSql

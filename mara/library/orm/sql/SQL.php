@@ -111,6 +111,23 @@ abstract class SQL
         return $where;
     }
 
+    protected function parseUpdate($compileWhere = null)
+    {
+        if (!$compileWhere) {
+            return '';
+        }
+
+        $where = [];
+        foreach ($compileWhere as $field => $value) {
+            $where[] = "{$field} = ?";
+            $this->params[] = $value;
+        }
+
+        $where = implode(',', $where);
+
+        return $where;
+    }
+
     protected function parseOrder($compileOrder = null)
     {
         if (is_null($compileOrder)) {
