@@ -29,6 +29,8 @@ return [
         // 读后感 - 读后感详情
         'detail' => ['\/bf\/reaction\/detail'],
         // 读后感 - 新增
-        'add' => ['\/bf\/reaction\/add']
+        'add' => ['\/bf\/reaction\/add'],
+        // 读后感 - 编辑
+        'edit' => ['\/bf\/reaction\/edit']
     ]
 ];
