@@ -49,4 +49,8 @@ return [
         // 查看我对别人的借书申请列表
         'myApply' => ['\/bf\/apply\/my_apply']
     ],
+    'app\mara\controller\UploadController' => [
+        // 上传图片
+        'image' => ['\/bf\/upload']
+    ],
 ];
