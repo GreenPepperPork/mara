@@ -11,6 +11,7 @@ namespace app\mara\dao;
 use app\mara\model\BookModel;
 use mara\library\Config;
 use mara\library\orm\Dao;
+use mara\library\orm\symbol\Like;
 
 class BookDao extends Dao
 {
@@ -27,14 +28,20 @@ class BookDao extends Dao
     /**
      * @param $page
      * @param $limit
+     * @param $key
      * @return BookModel[]
      * @throws \Exception
      */
-    public function listBook($page, $limit)
+    public function listBook($page, $limit, $key)
     {
         $offset = ($page - 1) * $limit;
 
-        $list = $this->query()->orderBy(['id' => 'desc'])->get($limit, $offset);
+        $query = $this->query();
+        if (!empty($key)) {
+            $query->where(['name' => new Like('%' . $key . '%')]);
+        }
+
+        $list = $query->orderBy(['id' => 'desc'])->get($limit, $offset);
 
         return $list;
     }
