@@ -11,6 +11,7 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\BookDao;
+use app\mara\dao\ReactionDao;
 use app\mara\model\BookModel;
 use mara\library\view\Controller;
 
@@ -48,14 +49,19 @@ class BookController extends Controller
      */
     public function detail()
     {
-        $id= $this->input('id');
+        $id = $this->input('id');
 
         // 获取书本列表
         $bookDao = new BookDao();
         $book = $bookDao->getById($id);
 
+        // 读后感列表
+        $reactionDao = new ReactionDao();
+        $reactionList = $reactionDao->listByBookId($id);
+
         Result::returnSuccessResult([
-            'book_detail' => $book
+            'book_detail' => $book,
+            'reaction_list' => $reactionList
         ]);
     }
 

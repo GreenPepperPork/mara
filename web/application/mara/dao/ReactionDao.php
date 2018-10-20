@@ -37,6 +37,20 @@ class ReactionDao extends Dao
     }
 
     /**
+     * @param integer $bookId
+     * @param int $offset
+     * @param int $limit
+     * @return ReactionModel[]
+     * @throws \Exception
+     */
+    public function listByBookId($bookId, $offset = 0, $limit = 20)
+    {
+        $list = $this->query()->where(['book_id' => $bookId])->get($limit, $offset);
+
+        return $list;
+    }
+
+    /**
      * @param integer $id
      * @return ReactionModel
      * @throws \Exception
