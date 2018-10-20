@@ -30,10 +30,11 @@ class BookController extends Controller
     {
         $page = $this->input('page', 1);
         $size = $this->input('size', self::DEFAULT_SIZE);
+        $searchKey = $this->input('searchKey', "");
 
         // 获取书本列表
         $bookDao = new BookDao();
-        $bookList = $bookDao->listBook($page, $size);
+        $bookList = $bookDao->listBook($page, $size,$searchKey);
 
         Result::returnSuccessResult([
             'list' => $bookList
@@ -47,12 +48,11 @@ class BookController extends Controller
      */
     public function detail()
     {
-        $page = $this->input('page', 1);
-        $size = $this->input('size', self::DEFAULT_SIZE);
+        $id= $this->input('id');
 
         // 获取书本列表
         $bookDao = new BookDao();
-        $bookList = $bookDao->listBook($page, $size);
+        $book = $bookDao->getById($id);
 
         Result::returnSuccessResult([
             'list' => $bookList
