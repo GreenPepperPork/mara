@@ -54,11 +54,11 @@ class ApplyController extends Controller
     }
 
     /**
-     * 查看别人对我的借书申请列表
+     * 查看我对别人借书申请列表
      *
      * @throws \Exception
      */
-    public function applyApply()
+    public function myApply()
     {
         $uid = $this->input('uid');
 

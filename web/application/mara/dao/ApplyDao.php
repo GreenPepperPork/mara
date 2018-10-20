@@ -40,4 +40,21 @@ class ApplyDao extends Dao
 
         return $list;
     }
+
+    /**
+     * @param $uid
+     * @return ApplyModel[]
+     * @throws \Exception
+     */
+    public function listByMyUid($uid)
+    {
+        $where['apply_uid'] = $uid;
+
+        $list = $this->query()
+            ->where($where)
+            ->orderBy(['id' => 'desc'])
+            ->get(50);
+
+        return $list;
+    }
 }

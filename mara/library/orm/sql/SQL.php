@@ -119,6 +119,10 @@ abstract class SQL
 
         $where = [];
         foreach ($compileWhere as $field => $value) {
+            if (is_null($value)) {
+                continue;
+            }
+
             $where[] = "{$field} = ?";
             $this->params[] = $value;
         }
