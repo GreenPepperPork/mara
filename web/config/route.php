@@ -36,5 +36,11 @@ return [
         'add' => ['\/bf\/reaction\/add'],
         // 读后感 - 编辑
         'edit' => ['\/bf\/reaction\/edit']
-    ]
+    ],
+    'app\mara\controller\ApplyController' => [
+        // 新增申请
+        'add' => ['\/bf\/apply/add'],
+        // 查看别人对我的借书申请列表
+        'ownerApply' => ['\/bf\/apply\/owner_list']
+    ],
 ];
