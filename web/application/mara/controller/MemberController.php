@@ -94,6 +94,38 @@ class MemberController extends Controller
 
     }
 
+    /**
+     * 个人中心详情
+     *
+     * @throws \Exception
+     */
+    public function detail()
+    {
+        $uid = $this->input('uid');
+
+        // TODO EMPTY UID
+
+        $memberDao = new MemberDao();
+        $memberInfo = $memberDao->getById($uid);
+
+        Result::returnSuccessResult($memberInfo);
+    }
+
+    /**
+     * 个人中心 --　读后感
+     */
+    public function reaction()
+    {
+        $uid = $this->input('uid');
+
+        // TODO EMPTY UID
+
+        $memberDao = new MemberDao();
+        $memberInfo = $memberDao->getById($uid);
+
+        Result::returnSuccessResult($memberInfo);
+    }
+
     public function test()
     {
 //        $model = new MemberDao();

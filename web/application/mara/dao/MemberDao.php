@@ -31,7 +31,7 @@ class MemberDao extends Dao
      */
     public function getById($id)
     {
-        $row = $this->query()->where(['id' => $id])->get();
+        $row = $this->query()->where(['id' => $id])->getOne();
 
         return $row;
     }
