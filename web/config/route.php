@@ -16,13 +16,15 @@ return [
         'registry' => ['\/bf\/member\/registry'],
         // 个人中心 -- 个人详情
         'detail' => ['\/bf\/member\/detail'],
-        // 个人中心 -- 读后感
-        'reaction' => ['\/bf\/member\/reaction'],
         // 测试
         'test' => ['\/bf\/member\/test'],
     ],
     'app\mara\controller\IndexController' => [
         // 首页 - 找书
         'index' => ['\/bf\/index']
+    ],
+    'app\mara\controller\ReactionController' => [
+        // 首页 - 找书
+        'my' => ['\/bf\/reaction\/my']
     ]
 ];

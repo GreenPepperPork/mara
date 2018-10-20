@@ -15,11 +15,11 @@ use mara\library\orm\Model;
 class ReactionModel extends Model
 {
     /**
-     * 读后感ID
+     * 书本ID
      *
      * @var int
      */
-    public $reaction_id;
+    public $book_id;
 
     /**
      * @var int

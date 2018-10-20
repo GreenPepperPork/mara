@@ -115,23 +115,6 @@ class MemberController extends Controller
         Result::returnSuccessResult($memberInfo);
     }
 
-    /**
-     * 个人中心 --　读后感
-     */
-    public function reaction()
-    {
-        $uid = $this->input('uid');
-
-        if (empty($uid)){
-            Result::returnFailedResult("输入uid为空");
-        }
-
-        $reactionDao = new ReactionDao();
-        $list = $reactionDao->listByUid($uid);
-
-        Result::returnSuccessResult($list);
-    }
-
     public function test()
     {
 //        $model = new MemberDao();

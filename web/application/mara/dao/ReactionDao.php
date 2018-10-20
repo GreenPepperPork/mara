@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace app\mara\dao;
 
-use app\mara\model\CommentModel;
 use app\mara\model\ReactionModel;
 use mara\library\Config;
 use mara\library\orm\Dao;
@@ -20,7 +19,7 @@ class ReactionDao extends Dao
      */
     function init()
     {
-        $this->model = CommentModel::class;
+        $this->model = ReactionModel::class;
         $this->table = 'bf_reaction';
         $this->master = $this->slave = Config::get('dida', 'database');
     }
