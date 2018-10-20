@@ -11,6 +11,7 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\BookDao;
+use app\mara\dao\CommentDao;
 use app\mara\dao\ReactionDao;
 use app\mara\model\ReactionModel;
 use mara\library\view\Controller;
@@ -39,9 +40,9 @@ class ReactionController extends Controller
     }
 
     /**
-     * 读后感详情
+     * 读后感详情根据uid
      */
-    public function detail()
+    public function detailByUid()
     {
         try {
             $uid = $this->input('uid');
@@ -51,9 +52,12 @@ class ReactionController extends Controller
             $reactionDao = new ReactionDao();
             $detail = $reactionDao->listByUid($uid);
             $bookDao=new BookDao();
+            $commentDao=new CommentDao();
             foreach ($detail as $detail1){
                 $book=$bookDao->getById($detail1->book_id);
                 $detail1->bookName=$book->name;
+                $detail1->images="";
+                $detail1->commnets=$commentDao->getByreactionId($detail1->id);
             }
             Result::returnSuccessResult($detail);
         } catch (\Exception $e) {

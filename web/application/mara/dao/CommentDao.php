@@ -28,4 +28,10 @@ class CommentDao extends Dao
         $row=$this->query()->where(['id'=>id])->get();
         return $row;
     }
+
+    function getByreactionId($reactionId){
+        $row=$this->query()->where(['reaction_id'=>$reactionId])->get();
+
+        return $row;
+    }
 }
