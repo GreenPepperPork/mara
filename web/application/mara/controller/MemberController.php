@@ -18,7 +18,7 @@ use mara\library\view\Controller;
 class MemberController extends Controller
 {
     const head_icon="";
-    const sex=0;
+    const sex=1;
     /**
      * 登陆页面
      */
