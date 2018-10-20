@@ -10,9 +10,9 @@
 return [
     // 问题首页
     'app\mara\controller\MemberController' => [
-        // 登陆
+        // 登陆接口
         'login' => ['\/bf\/member\/login'],
-        // 注册
+        // 注册登录接口
         'registry' => ['\/bf\/member\/registry'],
     ],
 ];
