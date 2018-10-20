@@ -60,9 +60,14 @@ class BookDao extends Dao
         return $row;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Exception
+     */
     public function getById($id)
     {
-        $row = $this->query()->where(['id' => $id])->get();
+        $row = $this->query()->where(['id' => $id])->getOne();
 
         return $row;
     }
