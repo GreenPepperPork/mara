@@ -49,8 +49,10 @@ class BookModel extends Model
     public $images;
 
     /**
+     * @see BookStatusEnum
      *
-     * @var BookStatusEnum::STATUS_IDEA | BookStatusEnum::STATUS_RENTING
+     * 1 - 闲置 | 2 - 已出借
+     *
      */
     public $status;
 
@@ -69,6 +71,8 @@ class BookModel extends Model
     public $rent_uid;
 
     /**
+     * @see BookIsRentEnum
+     *
      * 是否可出借 0-不可 1-可出借
      *
      * @var int

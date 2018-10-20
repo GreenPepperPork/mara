@@ -33,6 +33,8 @@ class IndexController extends Controller
         $bookDao = new BookDao();
         $bookList = $bookDao->listBook($page, $size);
 
-        Result::returnSuccessResult($bookList);
+        Result::returnSuccessResult([
+            'list' => $bookList
+        ]);
     }
 }
