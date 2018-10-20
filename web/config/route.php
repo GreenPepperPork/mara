@@ -19,9 +19,13 @@ return [
         // 测试
         'test' => ['\/bf\/member\/test'],
     ],
-    'app\mara\controller\IndexController' => [
+    'app\mara\controller\BookController' => [
         // 首页 - 找书
-        'index' => ['\/bf\/index']
+        'index' => ['\/bf\/index'],
+        // 上传书本
+        'add' => ['\/bf\/book\/add'],
+        // 编辑书本
+        'edit' => ['\/bf\/book\/edit']
     ],
     'app\mara\controller\ReactionController' => [
         // 读后感 - 我的读后感
