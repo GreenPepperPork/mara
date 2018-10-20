@@ -55,7 +55,7 @@ class BookController extends Controller
         $book = $bookDao->getById($id);
 
         Result::returnSuccessResult([
-            'list' => $bookList
+            'bookdetial' => $book
         ]);
     }
 
