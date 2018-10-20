@@ -11,6 +11,7 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\BookDao;
+use app\mara\model\BookModel;
 use mara\library\view\Controller;
 
 class BookController extends Controller
@@ -65,20 +66,37 @@ class BookController extends Controller
      */
     public function add()
     {
-        $name = $this->post('name');
-        $brief = $this->post('brief');
-        $reaction = $this->post('reaction');
-        $cover = $this->post('cover');
-        $images = $this->post('images', '');
-        $status = $this->post('status');
-        $ownerUid = $this->post('owner_uid');
-        $isRent = $this->post('is_rent');
+        try {
 
-        // TODO 检测值
-
-        // TODO 新增图书
-
-        Result::returnSuccessResult();
+            $name = $this->post('name');
+            $brief = $this->post('brief');
+            $reaction = $this->post('reaction');
+            $cover = $this->post('cover');
+            $images = $this->post('images', '');
+            $status = $this->post('status');
+            $ownerUid = $this->post('owner_uid');
+            $isRent = $this->post('is_rent');
+            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)) {
+                Result::returnFailedResult("输入参数为空");
+            }
+            $bookModel = new BookModel();
+            $bookModel->name = $name;
+            $bookModel->brief = $brief;
+            $bookModel->reaction = $reaction;
+            $bookModel->cover = $cover;
+            $bookModel->images = $images;
+            $bookModel->status = $status;
+            $bookModel->owner_uid = $ownerUid;
+            $bookModel->is_rent = $isRent;
+            $bookDao = new BookDao();
+            if (!empty($bookDao->insert($bookModel))) {
+                Result::returnSuccessResult("插入书本成功");
+            } else {
+                Result::returnFailedResult("插入书本失败");
+            }
+        } catch (\Exception $e) {
+                Result::returnFailedResult("系统级错误");
+        }
     }
 
     /**
@@ -88,18 +106,36 @@ class BookController extends Controller
      */
     public function edit()
     {
-        $name = $this->post('name');
-        $brief = $this->post('brief');
-        $reaction = $this->post('reaction');
-        $cover = $this->post('cover');
-        $images = $this->post('images', '');
-        $status = $this->post('status');
-        $isRent = $this->post('is_rent');
 
-        // TODO 检测值
-
-        // TODO 修改图书
-
-        Result::returnSuccessResult();
+        try {
+            $id = $this->post('id');
+            $name = $this->post('name');
+            $brief = $this->post('brief');
+            $reaction = $this->post('reaction');
+            $cover = $this->post('cover');
+            $images = $this->post('images', '');
+            $status = $this->post('status');
+            $isRent = $this->post('is_rent');
+            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)) {
+                Result::returnFailedResult("输入参数为空");
+            }
+            $updateArray = new BookModel();
+            $updateArray->name = $name;
+            $updateArray->brief = $brief;
+            $updateArray->reaction = $reaction;
+            $updateArray->cover = $cover;
+            $updateArray->images = $images;
+            $updateArray->status = $status;
+            $updateArray->owner_uid = $ownerUid;
+            $updateArray->is_rent = $isRent;
+            $bookDao = new BookDao();
+            if (!empty($bookDao->where(['id' => $id])->update($updateArray))) {
+                Result::returnSuccessResult("编辑图书成功");
+            } else {
+                Result::returnFailedResult("编辑图书失败");
+            }
+        } catch (\Exception $e) {
+            Result::returnFailedResult("系统级错误");
+        }
     }
 }

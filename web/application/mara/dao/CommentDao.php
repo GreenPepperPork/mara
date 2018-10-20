@@ -23,4 +23,9 @@ class CommentDao extends Dao
         $this->table = 'bf_comment';
         $this->master = $this->slave = Config::get('dida', 'database');
     }
+
+    function getById($id){
+        $row=$this->query()->where(['id'=>id])->get();
+        return $row;
+    }
 }

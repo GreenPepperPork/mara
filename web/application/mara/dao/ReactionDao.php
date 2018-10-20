@@ -47,4 +47,30 @@ class ReactionDao extends Dao
 
         return $row;
     }
+
+    /**
+     * @param $reactionDao
+     * @return bool|int
+     * @throws \Exception
+     */
+    public function insert($reactionModel)
+    {
+        $row = $this->query()->insert($reactionModel);
+
+        return $row;
+    }
+
+    /**
+     * @param $id
+     * @param $content
+     * @return int
+     * @throws \Exception
+     */
+    public function update($updateArr,$id)
+    {
+        $row = $this->query()->where(['id' => $id])->update($updateArr);
+
+        return $row;
+    }
+
 }

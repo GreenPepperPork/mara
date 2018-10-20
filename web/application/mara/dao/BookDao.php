@@ -38,4 +38,18 @@ class BookDao extends Dao
 
         return $list;
     }
+
+    public function insert($bookModel)
+    {
+        $row=$this->query()->insert($bookModel);
+
+        return $row;
+    }
+
+    public function update($updateArr){
+        $row=$this->query()->update($updateArr);
+
+        return $row;
+    }
+
 }
