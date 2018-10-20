@@ -56,7 +56,7 @@ class ReactionController extends Controller
             foreach ($detail as $detail1){
                 $book=$bookDao->getById($detail1->book_id);
                 $detail1->bookName=$book->name;
-                $detail1->images = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540066403599&di=6b1edc474435e4d75a52f3c551cddfbc&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fd439b6003af33a8754d7a023cd5c10385343b555.jpg";
+                $detail1->images = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540067621393&di=abdcdb0ae4f4632ed19990451e254cce&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F35a85edf8db1cb1345ac812ad654564e93584bc5.jpg";
                 $detail1->commnets=$commentDao->getByreactionId($detail1->id);
             }
             Result::returnSuccessResult($detail);
