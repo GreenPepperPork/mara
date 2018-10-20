@@ -76,7 +76,8 @@ class BookController extends Controller
             $status = $this->post('status');
             $ownerUid = $this->post('owner_uid');
             $isRent = $this->post('is_rent');
-            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)) {
+            $author = $this->post('author');
+            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)||empty($author)) {
                 Result::returnFailedResult("输入参数缺失");
             }
             $bookModel = new BookModel();
@@ -93,6 +94,7 @@ class BookController extends Controller
             $bookModel->gmt_create=time();
             $bookModel->gmt_modified=time();
             $bookModel->reaction_count=0;
+            $bookModel->author=$author;
             $bookDao = new BookDao();
             if (!empty($bookDao->insert($bookModel))) {
                 Result::returnSuccessResult("插入书本成功");

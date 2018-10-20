@@ -65,6 +65,10 @@ class MemberDao extends Dao
         return $row;
     }
 
+    public function getByIds($idArray){
+        $row=$this->query()->where(['id'=>$idArray])->get();
 
+        return $row;
+    }
 
 }

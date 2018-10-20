@@ -96,4 +96,10 @@ class BookModel extends Model
     public $gmt_create;
 
     public $gmt_modified;
+
+    /**
+     * 作者
+     * @var
+     */
+    public $author;
 }
