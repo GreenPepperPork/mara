@@ -11,6 +11,7 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\BookDao;
+use app\mara\dao\MemberDao;
 use app\mara\dao\ReactionDao;
 use app\mara\model\BookModel;
 use mara\library\view\Controller;
@@ -58,6 +59,18 @@ class BookController extends Controller
         // 读后感列表
         $reactionDao = new ReactionDao();
         $reactionList = $reactionDao->listByBookId($id);
+
+        $uids = array_column($reactionList, 'uid');
+        $memberDao = new MemberDao();
+        $memberList = $memberDao->getByIds($uids);
+        if (!empty($memberList)) {
+            $memberList = array_combine(array_column($memberList, 'id'), $memberList);
+
+            foreach ($reactionList as $reaction) {
+                $reaction->nickname = $memberList[$reaction->uid]->name;
+                $reaction->head_icon = $memberList[$reaction->uid]->head_icon;
+            }
+        }
 
         Result::returnSuccessResult([
             'book_detail' => $book,
