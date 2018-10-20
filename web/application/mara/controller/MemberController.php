@@ -9,14 +9,9 @@
 
 namespace app\mara\controller;
 
-use app\common\assembly\Encrypt;
-use app\common\assembly\MaraImage;
 use app\common\assembly\Result;
-use mara\library\Config;
-use mara\library\Request;
+use app\mara\dao\MemberDao;
 use mara\library\view\Controller;
-use storage\model\cache\OptionModel;
-use storage\model\cache\QuestionModel;
 
 class MemberController extends Controller
 {
@@ -54,5 +49,12 @@ class MemberController extends Controller
 
         $member = ['uid' => 10086, 'nickname' => '应果真'];
         Result::returnSuccessResult($member);
+    }
+
+    public function test()
+    {
+        $model = new MemberDao();
+        var_dump($model->getById(1));
+        exit;
     }
 }

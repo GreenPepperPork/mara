@@ -14,5 +14,7 @@ return [
         'login' => ['\/bf\/member\/login'],
         // 注册登录接口
         'registry' => ['\/bf\/member\/registry'],
+        // 测试
+        'test' => ['\/bf\/member\/test'],
     ],
 ];

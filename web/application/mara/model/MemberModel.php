@@ -6,25 +6,41 @@
 // +----------------------------------------------------------------------
 // | Author: 望江
 // +----------------------------------------------------------------------
-namespace app\index\model;
+namespace app\mara\model;
 
-use mara\library\Cache;
-use mara\library\Config;
-use mara\library\orm\Builder;
-use mara\library\orm\Query;
+use mara\library\orm\Model;
 
-class MemberModel
+class MemberModel extends Model
 {
-    public function getById()
-    {
-//        $query = new Query(new Builder(Config::get('dida', 'database')), [
-//            'table' => 'member'
-//        ]);
+    /**
+     * 用户昵称
+     *
+     * @var string
+     */
+    public $name;
 
-        // 从快速缓存中获取文章列表
-//        $fastCache = Config::get('fast_cache', 'storage');
-//        $list = Cache::stored($fastCache['drive'])->get($fastCache['filename']);
+    /**
+     * 手机电话
+     *
+     * @var string
+     */
+    public $tel;
 
-//        return $list;
-    }
+    /**
+     * 头像
+     *
+     * @var string
+     */
+    public $head_icon;
+
+    /**
+     * 性别 用户性别 1-男生 2-女生
+     *
+     * @var int
+     */
+    public $sex;
+
+    public $gmt_create;
+
+    public $gmt_modified;
 }

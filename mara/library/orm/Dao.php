@@ -27,7 +27,7 @@ abstract class Dao
     /**
      * @var bool 是否跳过缓存
      */
-    protected $skipCache = false;
+    protected $skipCache = true;
 
     /**
      * @var string|object
@@ -69,7 +69,7 @@ abstract class Dao
             'model'  => $model,
             'table'  => $this->getTableName(),
 
-            'skipCache' => is_null($this->skipCache) ? false : $this->skipCache
+            'skipCache' => $this->skipCache
         ];
     }
 
@@ -79,22 +79,10 @@ abstract class Dao
      */
     public function query()
     {
-        $builder = null;
-
-        if (empty(self::$builder[$this->master][$this->slave])) {
-            self::$builder[$this->master][$this->slave] = new Builder([
-                'master' => $this->master,
-                'slave'  => $this->slave
-            ]);
-        }
-
-        $builder = self::$builder[$this->master][$this->slave];
-        if (!$builder instanceof Builder) {
-            throw new \Exception('Builder Cant not find master or slave options');
-        }
+        $builder = new Builder(['master' => $this->master, 'slave'  => $this->slave]);
 
         // TODO 这里参数可能还是需要调整一下
-        return new Query(self::$builder[$this->master][$this->slave], $this->getInfo());
+        return new Query($builder, $this->getInfo());
     }
 
     public function getTableName()

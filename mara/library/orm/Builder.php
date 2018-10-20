@@ -46,8 +46,7 @@ class Builder
         }
 
         // TODO 增加config的判断
-        $config = Config::get($this->config[$dsn], 'database');
-
+        $config = $this->config[$dsn];
         $dsn      = $config['dsn'];
         $username = $config['username'] ?: null;
         $password = $config['password'] ?: null;
