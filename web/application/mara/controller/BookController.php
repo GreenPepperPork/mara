@@ -30,11 +30,11 @@ class BookController extends Controller
     {
         $page = $this->input('page', 1);
         $size = $this->input('size', self::DEFAULT_SIZE);
-        $searchKey = $this->input('searchKey', "");
+        $key = $this->input('key', '');
 
         // 获取书本列表
         $bookDao = new BookDao();
-        $bookList = $bookDao->listBook($page, $size,$searchKey);
+        $bookList = $bookDao->listBook($page, $size, $key);
 
         Result::returnSuccessResult([
             'list' => $bookList
