@@ -1,6 +1,7 @@
 <?php
 
 namespace mara\library\orm\sql;
+use mara\library\orm\symbol\Like;
 
 /**
  * @method static bool isInsert($sqlType)
@@ -100,6 +101,9 @@ abstract class SQL
             if (is_array($value)) {
                 $where[] = "{$field} in (" . implode(',', array_fill(0, count($value), '?')) . ")";
                 $this->params = array_merge($this->params, $value);
+            } else if ($value instanceof Like) {
+                $where[] = "{$field} like ?";
+                $this->params[] = $value->getValue();
             } else {
                 $where[] = "{$field} = ?";
                 $this->params[] = $value;
