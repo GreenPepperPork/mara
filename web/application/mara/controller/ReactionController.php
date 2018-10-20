@@ -52,6 +52,15 @@ class ReactionController extends Controller
      */
     public function add()
     {
+        $bookId = $this->post('book_id');
+        $uid = $this->post('uid');
+        $content = $this->post('content');
+
+        // TODO 检测值
+
+        // TODO 新增读后感
+
+        Result::returnSuccessResult();
     }
 
     /**
@@ -59,5 +68,13 @@ class ReactionController extends Controller
      */
     public function edit()
     {
+        $id = $this->post('id');
+        $content = $this->post('content');
+
+        // TODO 检测值
+
+        // TODO 修改读后感
+
+        Result::returnSuccessResult();
     }
 }

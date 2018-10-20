@@ -67,4 +67,16 @@ class Controller extends View
             return null;
         }
     }
+
+    /**
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function post($key, $default = null)
+    {
+        $value = $_POST[$key];
+
+        return !is_null($value) ? $value : $default;
+    }
 }
