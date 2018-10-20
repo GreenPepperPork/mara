@@ -46,8 +46,16 @@ class BookDao extends Dao
         return $row;
     }
 
-    public function update($updateArr,$id){
-        $row=$this->query()->where(['id' => $id])->update($updateArr);
+    public function update($updateArr, $id)
+    {
+        $row = $this->query()->where(['id' => $id])->update($updateArr);
+
+        return $row;
+    }
+
+    public function getById($id)
+    {
+        $row = $this->query()->where(['id' => $id])->get();
 
         return $row;
     }
