@@ -2,7 +2,7 @@
 
 namespace app\mara\controller;
 
-class BookStatusEnum
+class BookIsRentEnum
 {
     /**
      * 不可出借
