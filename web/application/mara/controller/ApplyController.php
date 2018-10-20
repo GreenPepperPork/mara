@@ -64,7 +64,7 @@ class ApplyController extends Controller
 
         $applyDao = new ApplyDao();
 
-        $list = $applyDao->listByOwnerUid($uid);
+        $list = $applyDao->listByApplyUid($uid);
 
         // TODO 将list中的owner_uid转换为具体用户信息
         // TODO 将list中的apply_uid转换为具体用户信息

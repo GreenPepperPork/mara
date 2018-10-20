@@ -46,7 +46,7 @@ class ApplyDao extends Dao
      * @return ApplyModel[]
      * @throws \Exception
      */
-    public function listByMyUid($uid)
+    public function listByApplyUid($uid)
     {
         $where['apply_uid'] = $uid;
 
