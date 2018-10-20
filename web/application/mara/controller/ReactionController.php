@@ -52,7 +52,7 @@ class ReactionController extends Controller
             $detail = $reactionDao->listById($id);
             $bookDao=new BookDao();
             $book=$bookDao->getById($detail->book_id);
-            $detail->bookName=$book[0]->name;
+            $detail->bookName=$book->name;
             Result::returnSuccessResult($detail);
         } catch (\Exception $e) {
             Result::buildFailedResult("系统级错误");
