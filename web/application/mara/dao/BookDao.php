@@ -6,24 +6,21 @@
 // +----------------------------------------------------------------------
 // | Author: 望江
 // +----------------------------------------------------------------------
+namespace app\mara\dao;
 
-namespace app\mara\controller;
+use app\mara\model\BookModel;
+use mara\library\Config;
+use mara\library\orm\Dao;
 
-use mara\library\view\Controller;
-
-class IndexController extends Controller
+class BookDao extends Dao
 {
     /**
-     * 每页默认页数
+     * 初始化Dao
      */
-    const DEFAULT_SIZE = 20;
-
-    /**
-     * 首页 - 找书
-     */
-    public function index()
+    function init()
     {
-        $page = $this->input('page', 1);
-        $size = $this->input('size', self::DEFAULT_SIZE);
+        $this->model = BookModel::class;
+        $this->table = 'bf_book';
+        $this->master = $this->slave = Config::get('dida', 'database');
     }
 }
