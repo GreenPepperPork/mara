@@ -2,6 +2,8 @@
 
 namespace mara\library\orm;
 
+use app\mara\dao\MemberDao;
+use app\mara\model\MemberModel;
 use mara\library\orm\sql\Delete;
 use mara\library\orm\sql\Insert;
 use mara\library\orm\sql\Select;
@@ -212,7 +214,7 @@ class Query
 
         $records = [];
         while ($record = $exeResult->getRow()) {
-            $records[] = $record;
+            $records[] = $this->getModel()->format($record);
         }
 
         return $records;

@@ -40,6 +40,10 @@ class Config
                     foreach ($scanFiles as $scanFile) {
                         $loadFile = $file . DS . $scanFile;
 
+                        if (pathinfo($loadFile, PATHINFO_EXTENSION) !== 'php') {
+                            continue;
+                        }
+
                         if (is_file($loadFile) && $onlyInclude) {
                             include $loadFile;
                         } else if (is_file($loadFile)) {
