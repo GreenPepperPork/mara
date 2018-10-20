@@ -31,8 +31,40 @@ class MemberDao extends Dao
      */
     public function getById($id)
     {
-        $row = $this->query()->where(['id' => 1])->get();
+        $row = $this->query()->where(['id' => $id])->get();
 
         return $row;
     }
+
+    /**
+     * @param $MemberModel
+     * @return bool|int
+     * @throws \Exception
+     */
+    public function insert($memberModel){
+        $row=$this->query()->insert($memberModel);
+
+        return $row;
+    }
+
+    public function getByAccountAndPassword($tel,$password){
+        $row=$this->query()->where(['tel'=>$tel,'password'=>$password])->get();
+
+        return $row;
+    }
+
+    public function getByAccount($account){
+        $row=$this->query()->where(['tel'=>$account])->get();
+
+        return $row;
+    }
+
+    public function getByNickName($nickName){
+        $row=$this->query()->where(['name'=>$nickName])->get();
+
+        return $row;
+    }
+
+
+
 }
