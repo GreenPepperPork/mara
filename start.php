@@ -9,6 +9,10 @@
 
 namespace mara\library;
 
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    die(1);
+}
+
 require __DIR__ . '/base.php';
 require LIB_PATH . DS . 'Loader.php';
 

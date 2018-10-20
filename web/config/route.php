@@ -17,4 +17,8 @@ return [
         // 测试
         'test' => ['\/bf\/member\/test'],
     ],
+    'app\mara\controller\IndexController' => [
+        // 首页 - 找书
+        'index' => ['\/bf\/index']
+    ]
 ];

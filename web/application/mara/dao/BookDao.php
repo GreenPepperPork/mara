@@ -23,4 +23,19 @@ class BookDao extends Dao
         $this->table = 'bf_book';
         $this->master = $this->slave = Config::get('dida', 'database');
     }
+
+    /**
+     * @param $page
+     * @param $limit
+     * @return BookModel[]
+     * @throws \Exception
+     */
+    public function listBook($page, $limit)
+    {
+        $offset = ($page - 1) * $limit;
+
+        $list = $this->query()->orderBy(['id' => 'desc'])->get($limit, $offset);
+
+        return $list;
+    }
 }
