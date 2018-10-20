@@ -1,5 +1,9 @@
-*~
-*swp
-.idea
-.tmp
+\.idea
 vendor
+composer\.lock
+*\.out
+*\.swp
+bin
+lock
+test
+demo

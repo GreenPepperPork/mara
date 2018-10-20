@@ -1,0 +1,30 @@
+{
+  "name": "yinggaozhen/mara",
+  "description": "mara",
+  "type": "mara",
+  "minimum-stability": "dev",
+  "homepage": "https://github.com/yinggaozhen/mara",
+  "require" : {
+    "php" : ">=7.0"
+  },
+  "config": {
+    "bin-dir": "bin",
+    "http": true
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+  "authors": [{
+      "name": "Gaozhen Ying",
+      "email": "yinggaozhen@58ganji.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "mara\\": "mara"
+    }
+  }
+}
