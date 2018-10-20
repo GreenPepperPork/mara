@@ -25,7 +25,9 @@ return [
         // 上传书本
         'add' => ['\/bf\/book\/add'],
         // 编辑书本
-        'edit' => ['\/bf\/book\/edit']
+        'edit' => ['\/bf\/book\/edit'],
+        //书本详情页
+        'detail' => ['\/bf\/book\/detail']
     ],
     'app\mara\controller\ReactionController' => [
         // 读后感 - 我的读后感
