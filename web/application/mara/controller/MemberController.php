@@ -60,12 +60,7 @@ class MemberController extends Controller
             $password = $this->input('password');
             $password_repeat = $this->input('password_repeat');// TODO 改成统一校验类进行校验
             if (empty($account) || empty($nickname) || empty($password) || empty($password_repeat)) {
-                print_r($account);
-                print_r($nickname);
-                print_r($password);
-                print_r($password_repeat);
-                die;
-                Result::returnFailedResult('请填写有效的帐号/昵称');
+                Result::returnFailedResult('帐号/昵称信息请填写完整'.'account:'.json_encode($account).'nickname:'.json_encode($nickname).'password:'.json_encode($password).'password_repeat'.json_encode($password_repeat));
             }
             if ($password !== $password_repeat) {
                 Result::returnFailedResult("两次填写的密码不一致请重新填写");
