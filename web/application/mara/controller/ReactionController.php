@@ -10,6 +10,7 @@
 namespace app\mara\controller;
 
 use app\common\assembly\Result;
+use app\mara\dao\BookDao;
 use app\mara\dao\ReactionDao;
 use app\mara\model\ReactionModel;
 use mara\library\view\Controller;
@@ -49,6 +50,9 @@ class ReactionController extends Controller
             }
             $reactionDao = new ReactionDao();
             $detail = $reactionDao->listById($id);
+            $bookDao=new BookDao();
+            $book=$bookDao->getById($detail->book_id);
+            $detail->bookName=$book[0]->name;
             Result::returnSuccessResult($detail);
         } catch (\Exception $e) {
             Result::buildFailedResult("系统级错误");
