@@ -24,7 +24,9 @@ return [
         'index' => ['\/bf\/index']
     ],
     'app\mara\controller\ReactionController' => [
+        // 读后感 - 我的读后感
+        'my' => ['\/bf\/reaction\/my'],
         // 首页 - 找书
-        'my' => ['\/bf\/reaction\/my']
+        'detail' => ['\/bf\/reaction\/detail']
     ]
 ];

@@ -35,4 +35,16 @@ class ReactionDao extends Dao
 
         return $list;
     }
+
+    /**
+     * @param integer $id
+     * @return ReactionModel
+     * @throws \Exception
+     */
+    public function listById($id)
+    {
+        $row = $this->query()->where(['id' => $id])->getOne();
+
+        return $row;
+    }
 }
