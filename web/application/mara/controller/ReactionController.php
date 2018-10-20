@@ -44,15 +44,17 @@ class ReactionController extends Controller
     public function detail()
     {
         try {
-            $id = $this->input('id');
-            if (empty($id)) {
-                Result::returnFailedResult("输入id为空");
+            $uid = $this->input('uid');
+            if (empty($uid)) {
+                Result::returnFailedResult("输入uid为空");
             }
             $reactionDao = new ReactionDao();
-            $detail = $reactionDao->listById($id);
+            $detail = $reactionDao->listByUid($uid);
             $bookDao=new BookDao();
-            $book=$bookDao->getById($detail->book_id);
-            $detail->bookName=$book[0]->name;
+            foreach ($detail as $detail1){
+                $book=$bookDao->getById($detail1->book_id);
+                $detail1->bookName=$book->name;
+            }
             Result::returnSuccessResult($detail);
         } catch (\Exception $e) {
             Result::buildFailedResult("系统级错误");
