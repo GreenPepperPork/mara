@@ -105,7 +105,9 @@ class MemberController extends Controller
     {
         $uid = $this->input('uid');
 
-        // TODO EMPTY UID
+        if (empty($uid)){
+            Result::returnFailedResult("输入uid为空");
+        }
 
         $memberDao = new MemberDao();
         $memberInfo = $memberDao->getById($uid);
@@ -120,7 +122,9 @@ class MemberController extends Controller
     {
         $uid = $this->input('uid');
 
-        // TODO EMPTY UID
+        if (empty($uid)){
+            Result::returnFailedResult("输入uid为空");
+        }
 
         $reactionDao = new ReactionDao();
         $list = $reactionDao->listByUid($uid);
