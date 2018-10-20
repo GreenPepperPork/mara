@@ -26,7 +26,9 @@ return [
     'app\mara\controller\ReactionController' => [
         // 读后感 - 我的读后感
         'my' => ['\/bf\/reaction\/my'],
-        // 首页 - 找书
-        'detail' => ['\/bf\/reaction\/detail']
+        // 读后感 - 读后感详情
+        'detail' => ['\/bf\/reaction\/detail'],
+        // 读后感 - 新增
+        'add' => ['\/bf\/reaction\/add']
     ]
 ];
