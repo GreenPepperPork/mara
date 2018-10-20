@@ -79,6 +79,20 @@ class BookModel extends Model
      */
     public $is_rent;
 
+    /**
+     * 评论个数
+     *
+     * @var
+     */
+    public $comment_count;
+
+    /**
+     * 读后感个数
+     *
+     * @var
+     */
+    public $reaction_count;
+
     public $gmt_create;
 
     public $gmt_modified;
