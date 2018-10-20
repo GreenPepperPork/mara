@@ -105,7 +105,6 @@ class ReactionController extends Controller
                 Result::returnFailedResult("编辑读后感失败");
             }
         } catch (\Exception $e) {
-            print_r($e);
             Result::buildFailedResult("系统级错误");
         }
     }

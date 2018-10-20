@@ -77,7 +77,7 @@ class BookController extends Controller
             $ownerUid = $this->post('owner_uid');
             $isRent = $this->post('is_rent');
             if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)) {
-                Result::returnFailedResult("输入参数为空");
+                Result::returnFailedResult("输入参数缺失");
             }
             $bookModel = new BookModel();
             $bookModel->name = $name;
@@ -88,6 +88,11 @@ class BookController extends Controller
             $bookModel->status = $status;
             $bookModel->owner_uid = $ownerUid;
             $bookModel->is_rent = $isRent;
+            $bookModel->rent_uid=0;
+            $bookModel->comment_count=0;
+            $bookModel->gmt_create=time();
+            $bookModel->gmt_modified=time();
+            $bookModel->reaction_count=0;
             $bookDao = new BookDao();
             if (!empty($bookDao->insert($bookModel))) {
                 Result::returnSuccessResult("插入书本成功");
@@ -116,20 +121,15 @@ class BookController extends Controller
             $images = $this->post('images', '');
             $status = $this->post('status');
             $isRent = $this->post('is_rent');
-            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)) {
+            $gmtModified= time();
+
+            if (empty($name) && empty($brief) && empty($reaction) && empty($cover) && empty($images) && empty($status) && empty($isRent) && empty($gmtModified)) {
                 Result::returnFailedResult("输入参数为空");
             }
             $updateArray = new BookModel();
-            $updateArray->name = $name;
-            $updateArray->brief = $brief;
-            $updateArray->reaction = $reaction;
-            $updateArray->cover = $cover;
-            $updateArray->images = $images;
-            $updateArray->status = $status;
-            $updateArray->owner_uid = $ownerUid;
-            $updateArray->is_rent = $isRent;
+            $updateArray = array('name' => $name,'brief'=>$brief,'reaction'=>$reaction,'cover'=>$cover,'images'=>$images,'status'=>$status,'is_rent'=>$isRent,'gmt_modified'=>$gmtModified);
             $bookDao = new BookDao();
-            if (!empty($bookDao->where(['id' => $id])->update($updateArray))) {
+            if (!empty($bookDao->update($updateArray,$id))) {
                 Result::returnSuccessResult("编辑图书成功");
             } else {
                 Result::returnFailedResult("编辑图书失败");
