@@ -83,8 +83,8 @@ class MemberController extends Controller
             if (!empty($row = $memberDao->insert($memberModel))) {
                 $row=$memberDao->getById($row);
                 $data = new \stdClass();
-                $data->uid = $row[0]->id;
-                $data->nickname = $row[0]->name;
+                $data->uid = $row->id;
+                $data->nickname = $row->name;
                 Result::returnSuccessResult($data, "注册已成功");
             } else {
                 Result::returnFailedResult("注册账号失败");
