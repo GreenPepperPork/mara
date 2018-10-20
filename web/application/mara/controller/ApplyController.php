@@ -72,4 +72,19 @@ class ApplyController extends Controller
 
         Result::returnSuccessResult($list);
     }
+
+    public function allApply()
+    {
+        $uid = $this->input('uid');
+
+        $applyDao = new ApplyDao();
+
+        $list = $applyDao->listAllApplyUid($uid);
+
+        // TODO 将list中的owner_uid转换为具体用户信息
+        // TODO 将list中的apply_uid转换为具体用户信息
+        // TODO 将list中的book_id转换为具体书本信息
+
+        Result::returnSuccessResult($list);
+    }
 }

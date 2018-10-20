@@ -40,6 +40,8 @@ return [
     'app\mara\controller\ApplyController' => [
         // 新增申请
         'add' => ['\/bf\/apply/add'],
+        // 所有申请列表
+        'allApply' => ['\/bf\/apply\/all_apply'],
         // 查看别人对我的借书申请列表
         'ownerApply' => ['\/bf\/apply\/owner_apply'],
         // 查看我对别人的借书申请列表

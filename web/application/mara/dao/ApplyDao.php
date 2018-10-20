@@ -57,4 +57,17 @@ class ApplyDao extends Dao
 
         return $list;
     }
+
+    /**
+     * @param $uid
+     * @return ApplyModel[]
+     * @throws \Exception
+     */
+    public function listAllApplyUid($uid)
+    {
+        $sql = 'SELECT * FROM bf_apply WHERE owner_uid = ? OR apply_uid = ? ORDER BY id';
+        $list = $this->query()->getBuilder()->state($sql, [$uid, $uid])->getAll();
+
+        return $list;
+    }
 }
