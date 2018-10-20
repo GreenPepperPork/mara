@@ -11,6 +11,7 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\MemberDao;
+use app\mara\dao\ReactionDao;
 use app\mara\model\MemberModel;
 use mara\library\view\Controller;
 
@@ -121,10 +122,10 @@ class MemberController extends Controller
 
         // TODO EMPTY UID
 
-        $memberDao = new MemberDao();
-        $memberInfo = $memberDao->getById($uid);
+        $reactionDao = new ReactionDao();
+        $list = $reactionDao->listByUid($uid);
 
-        Result::returnSuccessResult($memberInfo);
+        Result::returnSuccessResult($list);
     }
 
     public function test()

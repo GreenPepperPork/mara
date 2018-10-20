@@ -12,7 +12,7 @@ use app\mara\controller\BookStatusEnum;
 use app\mara\controller\CommentTypeEnum;
 use mara\library\orm\Model;
 
-class CommentModel extends Model
+class ReactionModel extends Model
 {
     /**
      * 读后感ID
