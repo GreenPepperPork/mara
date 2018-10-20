@@ -85,6 +85,8 @@ class Query
             }
 
             $model = new $model;
+        } else {
+            $model = clone $model;
         }
 
         if (!is_object($model) || !$model instanceof Model) {
