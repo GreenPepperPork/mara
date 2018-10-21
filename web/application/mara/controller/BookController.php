@@ -65,8 +65,11 @@ class BookController extends Controller
         $reactionList = $reactionDao->listByBookId($id);
 
         $uids = array_column($reactionList, 'uid');
+
         $memberDao = new MemberDao();
         $memberList = $memberDao->getByIds($uids);
+        $row=$memberDao->getById($id);
+        $book->owner_head_icon=$row->head_icon;
         if (!empty($memberList)) {
             $memberList = array_combine(array_column($memberList, 'id'), $memberList);
 
