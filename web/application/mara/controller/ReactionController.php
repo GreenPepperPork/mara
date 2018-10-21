@@ -110,7 +110,10 @@ class ReactionController extends Controller
             $reactionDao=new ReactionDao();
             $updateArray = array('content' => $content);
             if (!empty($reactionDao->update($updateArray,$id))){
-                Result::returnSuccessResult("编辑读后感成功");
+                $data=new \stdClass();
+                $row=$reactionDao->getById($id);
+                $data->book_id=$row->book_id;
+                Result::returnSuccessResult($data,"编辑读后感成功");
             }else{
                 Result::returnFailedResult("编辑读后感失败");
             }
