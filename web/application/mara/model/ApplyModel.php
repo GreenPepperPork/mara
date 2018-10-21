@@ -44,4 +44,10 @@ class ApplyModel extends Model
     public $gmt_create;
 
     public $gmt_modified;
+
+    /**
+     * @var 借书的理由
+     */
+    public $content;
+
 }

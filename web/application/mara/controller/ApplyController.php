@@ -27,6 +27,7 @@ class ApplyController extends Controller
             $bookId = $this->input('bookid');
             $applyUid = $this->input('applyuid');
             $ownerId = $this->input("owneruid");
+            $content= $this->input("content");
             if (empty($bookId) || empty($applyUid) || empty($ownerId)) {
                 Result::returnFailedResult("传入参数为空");
             }
@@ -38,6 +39,7 @@ class ApplyController extends Controller
             $applyModel->is_read = 0;
             $applyModel->gmt_modified = time();
             $applyModel->gmt_create = time();
+            $applyModel->content=$content;
             if (!empty($applyDao->insert($applyModel))) {
                 Result::returnSuccessResult("增加申请成功");
             } else {
