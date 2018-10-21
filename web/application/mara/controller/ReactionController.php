@@ -42,15 +42,15 @@ class ReactionController extends Controller
     /**
      * 读后感详情根据uid
      */
-    public function detailByUid()
+    public function detailById()
     {
         try {
-            $uid = $this->input('uid');
-            if (empty($uid)) {
-                Result::returnFailedResult("输入uid为空");
+            $id = $this->input('id');
+            if (empty($id)) {
+                Result::returnFailedResult("输入id为空");
             }
             $reactionDao = new ReactionDao();
-            $detail = $reactionDao->listByUid($uid);
+            $detail = $reactionDao->listById($id);
             $bookDao=new BookDao();
             $commentDao=new CommentDao();
             foreach ($detail as $detail1){
