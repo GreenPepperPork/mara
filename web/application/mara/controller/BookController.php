@@ -78,7 +78,7 @@ class BookController extends Controller
                 }
             }
         }else{
-            Result::returnFailedResult("查询详情页失败");
+            // Result::returnFailedResult("查询详情页失败");
         }
 
         Result::returnSuccessResult([
