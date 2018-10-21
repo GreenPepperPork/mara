@@ -75,6 +75,8 @@ class BookController extends Controller
                 $reaction->nickname = $memberList[$reaction->uid]->name;
                 $reaction->head_icon = $memberList[$reaction->uid]->head_icon;
             }
+        }else{
+            Result::returnFailedResult("查询详情页失败");
         }
 
         Result::returnSuccessResult([
