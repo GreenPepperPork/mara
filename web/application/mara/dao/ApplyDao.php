@@ -70,4 +70,10 @@ class ApplyDao extends Dao
 
         return $list;
     }
+
+    public function insert($applyModel){
+        $row=$this->query()->insert($applyModel);
+
+        return $row;
+    }
 }

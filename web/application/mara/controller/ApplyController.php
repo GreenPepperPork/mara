@@ -11,9 +11,9 @@ namespace app\mara\controller;
 
 use app\common\assembly\Result;
 use app\mara\dao\ApplyDao;
+use app\mara\dao\BookDao;
 use app\mara\dao\MemberDao;
-use app\mara\dao\ReactionDao;
-use app\mara\model\MemberModel;
+use app\mara\model\ApplyModel;
 use mara\library\view\Controller;
 
 class ApplyController extends Controller
@@ -23,14 +23,31 @@ class ApplyController extends Controller
      */
     public function add()
     {
-        $bookId = $this->post('book_id');
-        $applyUid = $this->post('apply_uid');
+        try {
+            $bookId = $this->input('bookid');
+            $applyUid = $this->input('applyuid');
+            $ownerId = $this->input("owneruid");
+            if (empty($bookId) || empty($applyUid) || empty($ownerId)) {
+                Result::returnFailedResult("传入参数为空");
+            }
+            $applyDao = new ApplyDao();
+            $applyModel = new ApplyModel();
+            $applyModel->owner_uid = $ownerId;
+            $applyModel->apply_uid = $applyUid;
+            $applyModel->book_id = $bookId;
+            $applyModel->is_read = 0;
+            $applyModel->gmt_modified = time();
+            $applyModel->gmt_create = time();
+            if (!empty($applyDao->insert($applyModel))) {
+                Result::returnSuccessResult("增加申请成功");
+            } else {
+                Result::returnFailedResult("增加申请失败");
+            }
+        } catch (\Exception $e) {
+            Result::returnFailedResult("增加申请失败请求系统失败");
+        }
 
-        // TODO 检测值
 
-        // TODO 新增申请
-
-        Result::returnSuccessResult();
     }
 
     /**
@@ -43,12 +60,20 @@ class ApplyController extends Controller
         $uid = $this->input('uid');
 
         $applyDao = new ApplyDao();
+        $bookDao=new BookDao();
+        $memDao=new MemberDao();
 
         $list = $applyDao->listByOwnerUid($uid);
-
-        // TODO 将list中的owner_uid转换为具体用户信息
-        // TODO 将list中的apply_uid转换为具体用户信息
-        // TODO 将list中的book_id转换为具体书本信息
+        foreach ($list as $oneList){
+            $bookRow=$bookDao->getById($oneList->book_id);
+            $oneList->bookName=$bookRow->name;
+            $ownerRow=$memDao->getById($oneList->owner_uid);
+            $oneList->ownerName=$ownerRow->name;
+            $applyRow=$memDao->getById($oneList->apply_uid);
+            $oneList->applyName=$applyRow->name;
+        }
+        print_r($list);
+        die;
 
         Result::returnSuccessResult($list);
     }
@@ -67,7 +92,9 @@ class ApplyController extends Controller
         $list = $applyDao->listByApplyUid($uid);
 
         // TODO 将list中的owner_uid转换为具体用户信息
+
         // TODO 将list中的apply_uid转换为具体用户信息
+
         // TODO 将list中的book_id转换为具体书本信息
 
         Result::returnSuccessResult($list);
