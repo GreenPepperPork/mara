@@ -102,10 +102,10 @@ class ReactionController extends Controller
     public function edit()
     {
         try {
-            $id = $this->get('id');
-            $content = $this->get('content');
+            $id = $this->input('id');
+            $content = $this->input('content');
             if (empty($id) || empty($content)) {
-                Result::buildFailedResult("传入数值为空");
+                Result::returnFailedResult("传入数值为空");
             }
             $reactionDao=new ReactionDao();
             $updateArray = array('content' => $content);
@@ -118,7 +118,7 @@ class ReactionController extends Controller
                 Result::returnFailedResult("编辑读后感失败");
             }
         } catch (\Exception $e) {
-            Result::buildFailedResult("系统级错误");
+            Result::returnFailedResult("系统级错误");
         }
     }
 }
