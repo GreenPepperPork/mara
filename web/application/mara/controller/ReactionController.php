@@ -45,6 +45,8 @@ class ReactionController extends Controller
             }
             if (!empty($list)){
                 Result::returnSuccessResult($list);
+            }else{
+                Result::returnFailedResult("读后感不存在");
             }
         } catch (\Exception $e) {
             Result::buildFailedResult("系统级错误");
