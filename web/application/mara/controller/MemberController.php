@@ -19,6 +19,7 @@ class MemberController extends Controller
 {
     const head_icon="";
     const sex=1;
+
     /**
      * 登陆页面
      */
