@@ -16,6 +16,8 @@ return [
         'registry' => ['\/bf\/member\/registry'],
         // 个人中心 -- 个人详情
         'detail' => ['\/bf\/member\/detail'],
+        //保存个人信息
+        'edit'=>['\/bf\/member\/edit'],
         // 测试
         'test' => ['\/bf\/member\/test'],
     ],

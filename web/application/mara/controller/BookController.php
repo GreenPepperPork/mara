@@ -87,16 +87,16 @@ class BookController extends Controller
     {
         try {
 
-            $name = $this->post('name');
-            $brief = $this->post('brief');
-            $reaction = $this->post('reaction');
-            $cover = $this->post('cover');
-            $images = $this->post('images', '');
-            $status = $this->post('status');
-            $ownerUid = $this->post('owner_uid');
-            $isRent = $this->post('is_rent');
-            $author = $this->post('author');
-            if (empty($name) || empty($brief) || empty($reaction) || empty($cover) || empty($images) || empty($status) || empty($ownerUid) || empty($isRent)||empty($author)) {
+            $name = $this->input('name');
+            $brief = $this->input('brief');
+            $reaction = $this->input('reaction');
+            $cover = $this->input('cover');
+            $images = $this->input('images', '');
+            $status = 1;
+            $ownerUid = $this->input('owner_uid');
+            $isRent = $this->input('is_rent');
+            $author = $this->input('author');
+            if (empty($name) || empty($brief) || empty($reaction) || empty($status) || empty($ownerUid) || empty($isRent)||empty($author)) {
                 Result::returnFailedResult("输入参数缺失");
             }
             $bookModel = new BookModel();
@@ -108,7 +108,7 @@ class BookController extends Controller
             $bookModel->status = $status;
             $bookModel->owner_uid = $ownerUid;
             $bookModel->is_rent = $isRent;
-            $bookModel->rent_uid=0;
+            $bookModel->rent_uid=1;
             $bookModel->comment_count=0;
             $bookModel->gmt_create=time();
             $bookModel->gmt_modified=time();
@@ -121,6 +121,7 @@ class BookController extends Controller
                 Result::returnFailedResult("插入书本失败");
             }
         } catch (\Exception $e) {
+            print_r($e);
                 Result::returnFailedResult("系统级错误");
         }
     }
