@@ -35,7 +35,7 @@ return [
         // 读后感 - 我的读后感
         'my' => ['\/bf\/reaction\/my'],
         // 读后感 - 读后感详情
-        'detailByUid' => ['\/bf\/reaction\/detailById'],
+        'detailById' => ['\/bf\/reaction\/detailById'],
         // 读后感 - 新增
         'add' => ['\/bf\/reaction\/add'],
         // 读后感 - 编辑
