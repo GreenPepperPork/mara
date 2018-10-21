@@ -41,6 +41,7 @@ class BookController extends Controller
         foreach ($bookList as $book){
             $row=$memberDao->getById($book->owner_uid);
             $book->ownerName=$row->name;
+            $book->headicon=$row->head_icon;
         }
         Result::returnSuccessResult([
             'list' => $bookList
