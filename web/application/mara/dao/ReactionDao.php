@@ -57,7 +57,7 @@ class ReactionDao extends Dao
      */
     public function listById($id)
     {
-        $row = $this->query()->where(['id' => $id])->getOne();
+        $row = $this->query()->where(['id' => $id])->get();
 
         return $row;
     }
