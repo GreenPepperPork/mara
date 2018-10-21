@@ -73,6 +73,7 @@ class ApplyController extends Controller
             $oneList->ownerName=$ownerRow->name;
             $applyRow=$memDao->getById($oneList->apply_uid);
             $oneList->applyName=$applyRow->name;
+            $oneList->content=$applyRow->content;
         }
         print_r($list);
         die;
