@@ -102,8 +102,8 @@ class ReactionController extends Controller
     public function edit()
     {
         try {
-            $id = $this->post('id');
-            $content = $this->post('content');
+            $id = $this->get('id');
+            $content = $this->get('content');
             if (empty($id) || empty($content)) {
                 Result::buildFailedResult("传入数值为空");
             }
