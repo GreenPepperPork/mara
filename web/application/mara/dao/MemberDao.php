@@ -71,4 +71,10 @@ class MemberDao extends Dao
         return $row;
     }
 
+    public function update($updateArr,$id){
+        $row = $this->query()->where(['id' => $id])->update($updateArr);
+
+        return $row;
+    }
+
 }

@@ -103,16 +103,46 @@ class MemberController extends Controller
      */
     public function detail()
     {
-        $uid = $this->input('uid');
 
-        if (empty($uid)){
-            Result::returnFailedResult("输入uid为空");
+        try {
+            $uid = $this->input('uid');
+            if (empty($uid)) {
+                Result::returnFailedResult("输入uid为空");
+            }
+            $memberDao = new MemberDao();
+            $memberInfo = $memberDao->getById($uid);
+            Result::returnSuccessResult($memberInfo);
+        } catch (\Exception $e) {
+            Result::returnFailedResult("请求系统出错");
         }
+    }
 
-        $memberDao = new MemberDao();
-        $memberInfo = $memberDao->getById($uid);
+    public function edit()
+    {
+        try {
+            $id = $this->input("uid");
+            $name = $this->input("name");
+            $tel = $this->input("tel");
+            $sex = $this->input("sex");
+            if (empty($id)) {
+                Result::returnFailedResult("请传入用户uid");
+            }
+            if (empty($name) && empty($tel) && empty($sex)) {
+                Result::returnFailedResult("请输入修改参数");
+            }
+            $updateArr['name'] = $name;
+            $updateArr['tel'] = $tel;
+            $updateArr['sex'] = $sex;
 
-        Result::returnSuccessResult($memberInfo);
+            $memDao = new MemberDao();
+            if (!empty($memDao->update($updateArr,$id))) {
+                Result::returnSuccessResult("保存信息成功");
+            } else {
+                Result::returnFailedResult("保存信息失败");
+            }
+        } catch (\Exception $e) {
+            Result::returnFailedResult("请求系统失败");
+        }
     }
 
     public function test()
