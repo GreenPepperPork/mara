@@ -36,8 +36,12 @@ class BookController extends Controller
 
         // 获取书本列表
         $bookDao = new BookDao();
+        $memberDao=new MemberDao();
         $bookList = $bookDao->listBook($page, $size, $key);
-
+        foreach ($bookList as $book){
+            $row=$memberDao->getById($book->owner_uid);
+            $book->ownerName=$row->name;
+        }
         Result::returnSuccessResult([
             'list' => $bookList
         ]);
