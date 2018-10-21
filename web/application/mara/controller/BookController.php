@@ -60,25 +60,22 @@ class BookController extends Controller
         // 获取书本列表
         $bookDao = new BookDao();
         $book = $bookDao->getById($id);
-
         // 读后感列表
         $reactionDao = new ReactionDao();
         $reactionList = $reactionDao->listByBookId($id);
 
-        if (!empty($reactionList)) {
-            $uids = array_column($reactionList, 'uid');
-            $memberDao = new MemberDao();
-            $memberList = $memberDao->getByIds($uids);
-            if (!empty($memberList)) {
-                $memberList = array_combine(array_column($memberList, 'id'), $memberList);
+        $uids = array_column($reactionList, 'uid');
+        $memberDao = new MemberDao();
+        $memberList = $memberDao->getByIds($uids);
+        if (!empty($memberList)) {
+            $memberList = array_combine(array_column($memberList, 'id'), $memberList);
 
-                foreach ($reactionList as $reaction) {
-                    $reaction->nickname = $memberList[$reaction->uid]->name;
-                    $reaction->head_icon = $memberList[$reaction->uid]->head_icon;
-                }
+            foreach ($reactionList as $reaction) {
+                $reaction->nickname = $memberList[$reaction->uid]->name;
+                $reaction->head_icon = $memberList[$reaction->uid]->head_icon;
             }
         }else{
-            // Result::returnFailedResult("查询详情页失败");
+            Result::returnFailedResult("查询详情页失败");
         }
 
         Result::returnSuccessResult([
