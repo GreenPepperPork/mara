@@ -31,6 +31,18 @@ class ReactionController extends Controller
             }
             $reactionDao = new ReactionDao();
             $list = $reactionDao->listByUid($uid);
+            foreach ($list as $oneList){
+                $reactionDao = new ReactionDao();
+                $reactionRow = $reactionDao->getById($oneList->id);
+                $bookDao = new BookDao();
+                $commentDao = new CommentDao();
+                $book = $bookDao->getById($reactionRow->book_id);
+                $oneList->bookName = $book->name;
+                $oneList->images = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540067621393&di=abdcdb0ae4f4632ed19990451e254cce&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F35a85edf8db1cb1345ac812ad654564e93584bc5.jpg";
+                $oneList->commnets = $commentDao->getByreactionId($reactionRow->id);
+                $oneList->author =$book->author;
+
+            }
             if (!empty($list)){
                 Result::returnSuccessResult($list);
             }
